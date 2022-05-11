@@ -1,10 +1,12 @@
 package com.employees.springboot.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,10 +30,17 @@ public class EmployeeController {
 	}
 	
 	// Add new employee
-	@PostMapping("/add")
+	@PostMapping("/employees/add")
 	public String addNewEmployee(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String emailId ) {
 		Employee employee = new Employee(firstName, lastName, emailId);
 		employeeRepository.save(employee);
 		return "The new employee has been saved!";
 	}
+	
+	// get one employee
+	@GetMapping("/employees/{id}")
+	public Optional<Employee> findEmployeeById(@PathVariable long id ) {
+		return employeeRepository.findById(id);
+	}
+	
 }
