@@ -1,17 +1,18 @@
 package com.employees.springboot.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.employees.springboot.exception.ResourceNotFoundException;
 import com.employees.springboot.model.Employee;
 import com.employees.springboot.repository.EmployeeRepository;
 
@@ -30,17 +31,29 @@ public class EmployeeController {
 	}
 	
 	// Add new employee
-	@PostMapping("/employees/add")
-	public String addNewEmployee(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String emailId ) {
-		Employee employee = new Employee(firstName, lastName, emailId);
+	@PostMapping("/employees")
+	public String addNewEmployee(@RequestBody Employee employee) {
 		employeeRepository.save(employee);
 		return "The new employee has been saved!";
 	}
 	
 	// get one employee
 	@GetMapping("/employees/{id}")
-	public Optional<Employee> findEmployeeById(@PathVariable long id ) {
-		return employeeRepository.findById(id);
+	public Employee findEmployeeById(@PathVariable Long id ) {
+		return employeeRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Employee not found!"));
+	}
+	
+	// update an employee
+	@PutMapping("/employees/{id}")
+	public Employee updateEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
+		return employeeRepository.findById(id)
+				.map(employee-> {
+					employee.setFirstName(newEmployee.getFirstName());
+					employee.setLastName(newEmployee.getLastName());
+					employee.setEmailId(newEmployee.getEmailId());
+					return employeeRepository.save(employee);
+					})
+				.orElseThrow(() -> new ResourceNotFoundException("Employee not found!"));
 	}
 	
 }
