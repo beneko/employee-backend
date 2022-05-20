@@ -35,7 +35,7 @@ public class EmployeeController {
 	
 	// find employees with pagination
 	@GetMapping("/employees")
-	public List<Employee> getEmployees(@RequestParam(defaultValue = "0" ) String page){
+	public List<Employee> getEmployees(@RequestParam(defaultValue = "1") String page){
 		Page<Employee> employees = employeeRepository.findAll(PageRequest.of(Integer.valueOf(page)-1, 5));
 		System.out.println("Total Pages : " + employees.getTotalPages());
 		System.out.println("Total Employees : " + employees.getTotalElements());
@@ -52,11 +52,23 @@ public class EmployeeController {
 		return "The new employee has been saved!";
 	}
 	
-	// get one employee
+	// get one employee by id
 	@GetMapping("/employees/{id}")
 	public Employee findEmployeeById(@PathVariable Long id ) {
 		return employeeRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Employee not found!"));
 	}
+	
+	// get All employees with the same last name
+//	@GetMapping("/employees")
+//	public List<Employee> findEmployeeById(@RequestParam String lastName) {
+//		return employeeRepository.findByLastName(lastName);
+//	}
+	
+	// get All employees with the same last name
+//	@GetMapping("/employees")
+//	public List<Employee> findEmployeeById(@RequestParam String lastName,@RequestParam String page) {
+//		return employeeRepository.findByLastName(lastName, PageRequest.of(Integer.valueOf(page), 2)).getContent();
+//	}
 	
 	// update an employee
 	@PutMapping("/employees/{id}")
