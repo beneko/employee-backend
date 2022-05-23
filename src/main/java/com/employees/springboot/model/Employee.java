@@ -28,8 +28,8 @@ public class Employee {
 	@Column(name = "email_id")
 	private String emailId;
 	
-	@Column(name= "score")
-	private int score;
+	@Column(name= "coefficient")
+	private int coefficient;
 	
 	@Column(name= "arret_maladie")
 	private boolean malade;
@@ -42,14 +42,12 @@ public class Employee {
 
 	}
 	
-	public Employee(Long id, String firstName, String lastName, String emailId, int score, boolean malade,
+	public Employee(String firstName, String lastName, String emailId, int coefficient, boolean malade,
 			Date embaucheDate) {
-		super();
-		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.emailId = emailId;
-		this.score = score;
+		this.coefficient = coefficient;
 		this.malade = malade;
 		this.embaucheDate = embaucheDate;
 	}
@@ -60,12 +58,12 @@ public class Employee {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public int getScore() {
-		return score;
+	public int getcoefficient() {
+		return coefficient;
 	}
 
-	public void setScore(int score) {
-		this.score = score;
+	public void setcoefficient(int coefficient) {
+		this.coefficient = coefficient;
 	}
 
 	public boolean isMalade() {
@@ -106,6 +104,6 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId=" + emailId
-				+ ", score=" + score + ", malade=" + malade + ", embaucheDate=" + embaucheDate + "]";
+				+ ", coefficient=" + coefficient + ", malade=" + malade + ", embaucheDate=" + embaucheDate + "]";
 	}
 }
