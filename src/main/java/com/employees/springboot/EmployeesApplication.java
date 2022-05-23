@@ -44,7 +44,6 @@ public class EmployeesApplication implements CommandLineRunner {
 		employeeRepository.save(new Employee("drggdgr", "rdtgbf", "retghrrtgertf@gmail.com", 150 , false, new Date()));
 		employeeRepository.save(new Employee("rtujtyuj", "tyutyut", "utydjgrdt@gmail.com", 150 , true, new Date()));
 		
-		
 	}
 
 }
