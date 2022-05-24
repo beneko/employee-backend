@@ -36,13 +36,17 @@ public class EmployeesApplication implements CommandLineRunner {
 		employeeRepository.save(new Employee(null, "dsfdss", "fdgdfg", "gfdhfdh@gmail.com", 100 , false, new Date()));
 		employeeRepository.save(new Employee(null, "gfdhn", "dfgdfg", "dfgdfgdfgfdg@gmail.com", 100 , true, new Date()));
 		employeeRepository.save(new Employee(null, "retghrtge", "rtret", "gdfnfgnfhj@gmail.com", 250 , false, new Date()));
-		employeeRepository.save(new Employee(null, "dfbfgb", "hjghjj", "beterterytrhhzadnekouei@gmail.com", 100 , true, new Date()));
+		employeeRepository.save(new Employee(null, "dfbfgb", "hjghjj", "gdfgdfgdfgdf@gmail.com", 100 , true, new Date()));
 		employeeRepository.save(new Employee(null, "gdfbhfgb", "tytyry", "tretretre@gmail.com", 200 , false, new Date()));
 		employeeRepository.save(new Employee(null, "drgvbdfgb", "bvcvb", "fgvdfgbfd@gmail.com", 150 , false, new Date()));
 		employeeRepository.save(new Employee(null, "drgdf", "tretegb", "retretert@gmail.com", 100 , true, new Date()));
 		employeeRepository.save(new Employee(null, "drgdgb", "gbdfgh", "reterter@gmail.com", 200 , false, new Date()));
 		employeeRepository.save(new Employee(null, "drggdgr", "rdtgbf", "retghrrtgertf@gmail.com", 150 , false, new Date()));
 		employeeRepository.save(new Employee(null, "rtujtyuj", "tyutyut", "utydjgrdt@gmail.com", 150 , true, new Date()));
+		
+		employeeRepository.findAll().forEach(em -> {
+			System.out.println(em.toString());
+		});
 		
 	}
 
