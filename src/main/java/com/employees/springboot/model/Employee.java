@@ -11,6 +11,12 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Data @NoArgsConstructor @AllArgsConstructor @ToString
 @Entity
 @Table(name = "employees")
 public class Employee {
@@ -38,72 +44,4 @@ public class Employee {
 	@Temporal(TemporalType.DATE)
 	private Date embaucheDate;
 	
-	public Employee() {
-
-	}
-	
-	public Employee(String firstName, String lastName, String emailId, int coefficient, boolean malade,
-			Date embaucheDate) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.emailId = emailId;
-		this.coefficient = coefficient;
-		this.malade = malade;
-		this.embaucheDate = embaucheDate;
-	}
-
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public int getcoefficient() {
-		return coefficient;
-	}
-
-	public void setcoefficient(int coefficient) {
-		this.coefficient = coefficient;
-	}
-
-	public boolean isMalade() {
-		return malade;
-	}
-
-	public void setMalade(boolean malade) {
-		this.malade = malade;
-	}
-
-	public Date getEmbaucheDate() {
-		return embaucheDate;
-	}
-
-	public void setEmbaucheDate(Date embaucheDate) {
-		this.embaucheDate = embaucheDate;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public String getEmailId() {
-		return emailId;
-	}
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
-	
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId=" + emailId
-				+ ", coefficient=" + coefficient + ", malade=" + malade + ", embaucheDate=" + embaucheDate + "]";
-	}
 }
